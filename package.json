@@ -9,8 +9,7 @@
   "scripts": {
     "bundle": "npx webpack",
     "copy": "cp package.json dist/ && cp README.md dist/ && cp LICENSE dist/",
-    "build": "npm run bundle && npm run copy",
-    "publish": "npm publish ./dist"
+    "build": "npm run bundle && npm run copy"
   },
   "keywords": [
     "string",
