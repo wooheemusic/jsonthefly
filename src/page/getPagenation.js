@@ -28,7 +28,7 @@ export default function getPagenation(
   const rangeIndex = Math.ceil(current / range);
   const lastRangeIndex = Math.ceil(totalPageCnt / range);
   const isInFirstRange = rangeIndex === 1;
-  const isInLastRange = lastRangeIndex === rangeIndex;
+  const isInLastRange = lastRangeIndex <= rangeIndex;
 
   // const innerIndex = isCurrentAvailable ? current % range || range : null;
   const start = (rangeIndex - 1) * range + 1;
