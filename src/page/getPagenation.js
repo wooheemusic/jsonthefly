@@ -16,14 +16,14 @@ export default function getPagenation(
 
   const isCurrentAvailable = totalPageCnt >= current && current > 0;
 
-  if (!isCurrentAvailable) {
-    return {
-      before: null,
-      next: null,
-      start: null,
-      maxRange: null
-    };
-  }
+  // if (!isCurrentAvailable) {
+  //   return {
+  //     before: null,
+  //     next: null,
+  //     start: null,
+  //     maxRange: null
+  //   };
+  // }
 
   const rangeIndex = Math.ceil(current / range);
   const lastRangeIndex = Math.ceil(totalPageCnt / range);
