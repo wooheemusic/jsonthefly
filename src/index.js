@@ -4,4 +4,6 @@ import string from "./array";
 import test from "./test";
 import react from "./react";
 
+export { array, object, string, test, react };
+
 export default { array, object, string, test, react };

@@ -6,6 +6,16 @@ import arrayEqualWithoutOrder from "./arrayEqualWithoutOrder";
 import subtract from "./subtract";
 import merge from "./merge";
 
+export {
+  iterate,
+  indexOf,
+  numberOf,
+  arrayEqual,
+  arrayEqualWithoutOrder,
+  merge,
+  subtract
+};
+
 export default {
   iterate,
   indexOf,

@@ -1,5 +1,7 @@
 import is from "./is";
+import arrayEqualWithoutOrder from "../array/arrayEqualWithoutOrder";
 
+const isArray = Array.isArray;
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 
 /**
@@ -7,7 +9,7 @@ const hasOwnProperty = Object.prototype.hasOwnProperty;
  * when any key has values which are not strictly equal between the arguments.
  * Returns true when the values of all keys are strictly equal.
  */
-export default function shallowEqual(objA, objB) {
+export default function shallowEqual(objA, objB, checkArrayElements = false) {
   if (is(objA, objB)) {
     return true;
   }
@@ -26,11 +28,17 @@ export default function shallowEqual(objA, objB) {
     return false;
   }
   // Test for A's keys different from B.
-  for (let i = 0; i < keysA.length; i++) {
-    if (
-      !hasOwnProperty.call(objB, keysA[i]) ||
-      !is(objA[keysA[i]], objB[keysA[i]])
-    ) {
+  const l = keysA.length;
+  for (let i = 0; i < l; i++) {
+    const key = keysA[i];
+    if (!hasOwnProperty.call(objB, key)) {
+      return false;
+    }
+    const a = objA[key];
+    const b = objB[key];
+    if (checkArrayElements && isArray(a)) {
+      if (arrayEqualWithoutOrder(a, b) === false) return false;
+    } else if (!is(a, b)) {
       return false;
     }
   }
