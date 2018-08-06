@@ -1,6 +1,8 @@
 import numberOf from "./numberOf";
 import indexOf from "./indexOf";
 
+const isArray = Array.isArray;
+
 function arrayEqual1(A, B) {
   const l = A.length;
   const m = B.length;
@@ -20,9 +22,12 @@ function arrayEqual1(A, B) {
 }
 
 function arrayEqual2(_A, _B) {
+  if (!(isArray(_A) && isArray(_B))) {
+    return false;
+  }
   const l = _A.length;
   const m = _B.length;
-  if (l === undefined || l !== m) {
+  if (l !== m) {
     return false;
   }
   const A = [..._A];

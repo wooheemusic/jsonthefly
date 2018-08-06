@@ -7,7 +7,7 @@ const isArray = Array.isArray;
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 
 // it returns true even if two array properties are different with the same values and length but different order.
-export default function shallowEqualByException(
+export default function shallowEqualByExceptions(
   mapOrKeys,
   A,
   B,
