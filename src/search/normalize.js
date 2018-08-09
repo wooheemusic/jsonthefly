@@ -1,4 +1,5 @@
 export default function normalize(obj, isEmptyIgnored = false) {
+  // (scheduled) isReturningNew = false
   const keys = Object.keys(obj);
   const l = keys.length;
   for (let i = 0; i < l; i++) {

@@ -36,7 +36,7 @@ function arrayEqual2(_A, _B) {
     const a = A[i];
     const index = indexOf(a, B);
     if (index !== -1) {
-      b.splice(index, 1);
+      B.splice(index, 1);
     }
   }
   if (B.length !== 0) return false;
