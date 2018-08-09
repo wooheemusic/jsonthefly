@@ -5,6 +5,7 @@ import arrayEqual from "./arrayEqual";
 import arrayEqualWithoutOrder from "./arrayEqualWithoutOrder";
 import subtract from "./subtract";
 import merge from "./merge";
+import searchRows from "./searchRows";
 
 export {
   iterate,
@@ -13,7 +14,8 @@ export {
   arrayEqual,
   arrayEqualWithoutOrder,
   merge,
-  subtract
+  subtract,
+  searchRows
 };
 
 export default {
@@ -23,5 +25,6 @@ export default {
   arrayEqual,
   arrayEqualWithoutOrder,
   merge,
-  subtract
+  subtract,
+  searchRows
 };
