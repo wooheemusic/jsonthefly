@@ -1,5 +1,5 @@
 export default function parameterize(arr) {
-  if (isArray(arr) && arr.length === 0) {
+  if (Array.isArray(arr) && arr.length === 0) {
     return undefined;
   }
   return arr || undefined;

@@ -1,3 +1,4 @@
+const hasOwnProperty = Object.prototype.hasOwnProperty;
 // The entries that are in the intersection of given keys and a original object will be assigned to the copy.
 export default function getAssignedByKeys(copy, keys, origin) {
   // let keys = null;

@@ -1,7 +1,6 @@
 import is from "./is";
 import arrayEqualWithoutOrder from "../array/arrayEqualWithoutOrder";
 
-const isArray = Array.isArray;
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 
 /**
@@ -36,7 +35,7 @@ export default function shallowEqual(objA, objB, checkArrayElements = false) {
     }
     const a = objA[key];
     const b = objB[key];
-    if (checkArrayElements && isArray(a)) {
+    if (checkArrayElements && Array.isArray(a)) {
       if (arrayEqualWithoutOrder(a, b) === false) return false;
     } else if (!is(a, b)) {
       return false;

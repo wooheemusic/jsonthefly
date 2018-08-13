@@ -27,6 +27,7 @@ function subtractStringFromArray(A, a) {
 
 // (issue) string - undefined, null - undefined ?????
 export default function subtract(A, B) {
+  const isArray = Array.isArray;
   if (isArray(A)) {
     if (isArray(B)) {
       return subtractArrays(A, B);

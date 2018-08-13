@@ -2,7 +2,6 @@
 import arrayEqualWithoutOrder from "../array/arrayEqualWithoutOrder";
 import is from "./is";
 
-const isArray = Array.isArray;
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 
 // this check hasOwnProperty by default
@@ -26,7 +25,7 @@ export default function shallowEqualByKeys(
     return false;
   }
   let keys = null;
-  if (isArray(mapOrKeys)) {
+  if (Array.isArray(mapOrKeys)) {
     keys = mapOrKeys;
   } else {
     keys = Object.keys(mapOrKeys);
@@ -43,7 +42,7 @@ export default function shallowEqualByKeys(
     }
     const a = A[key];
     const b = B[key];
-    if (checkArrayElements && isArray(a)) {
+    if (checkArrayElements && Array.isArray(a)) {
       if (arrayEqualWithoutOrder(a, b) === false) return false;
     } else if (!is(a, b)) {
       return false;

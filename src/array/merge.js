@@ -15,6 +15,7 @@ function mergeArrays(B, A) {
 }
 
 export default function merge(A, B) {
+  const isArray = Array.isArray;
   if (isArray(A)) {
     if (isArray(B)) {
       return mergeArrays(A, B);
