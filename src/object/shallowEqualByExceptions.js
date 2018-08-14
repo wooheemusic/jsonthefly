@@ -58,8 +58,8 @@ export default function shallowEqualByExceptions(
     }
     const a = A[key];
     const b = B[key];
-    if (checkArrayElements && Array.isArray(a)) {
-      if (arrayEqualWithoutOrder(a, b) === false) return false;
+    if (checkArrayElements && Array.isArray(a) && Array.isArray(b)) {
+      if (arrayEqualWithoutOrder(a, b, true) === false) return false;
     } else if (!is(a, b)) {
       return false;
     }

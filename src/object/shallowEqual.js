@@ -35,8 +35,8 @@ export default function shallowEqual(objA, objB, checkArrayElements = false) {
     }
     const a = objA[key];
     const b = objB[key];
-    if (checkArrayElements && Array.isArray(a)) {
-      if (arrayEqualWithoutOrder(a, b) === false) return false;
+    if (checkArrayElements && Array.isArray(a) && Array.isArray(b)) {
+      if (arrayEqualWithoutOrder(a, b, true) === false) return false;
     } else if (!is(a, b)) {
       return false;
     }

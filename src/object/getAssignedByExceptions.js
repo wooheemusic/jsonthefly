@@ -9,6 +9,9 @@ export default function getAssignedByExceptions(copy, exKeys, origin) {
   // } else {
   //   keys = Object.keys(mapOrKeys);
   // }
+  if (!Array.isArray(exKeys) || typeof origin !== "object" || !copy) {
+    return copy;
+  }
   const keys = Object.keys(origin);
   const l = keys.length;
   for (let i = 0; i < l; i++) {

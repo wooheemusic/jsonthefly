@@ -19,17 +19,17 @@ function arrayEqual1(A, B) {
   return true;
 }
 
-function arrayEqual2(_A, _B) {
+function arrayEqual2(A, _B, alreadyChecked = false) {
   const isArray = Array.isArray;
-  if (!(isArray(_A) && isArray(_B))) {
+  if (!alreadyChecked && !(isArray(A) && isArray(_B))) {
     return false;
   }
-  const l = _A.length;
+  const l = A.length;
   const m = _B.length;
   if (l !== m) {
     return false;
   }
-  const A = [..._A];
+  // const A = [..._A];
   const B = [..._B];
   for (let i = 0; i < l; i++) {
     const a = A[i];
