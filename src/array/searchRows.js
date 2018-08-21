@@ -10,6 +10,9 @@ export default function searchRows(
   for (let i = 0; i < l; i++) {
     const row = list[i];
     if (row[searchKey] === key) {
+      if (!returnKey) {
+        return row;
+      }
       return row[returnKey];
     }
   }
