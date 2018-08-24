@@ -4,6 +4,9 @@ import getAssignedByKeys from "./getAssignedByKeys";
 import getAssignedByExceptions from "./getAssignedByExceptions";
 import shallowEqualByKeys from "./shallowEqualByKeys";
 import shallowEqualByExceptions from "./shallowEqualByExceptions";
+import isValidObject from "./isValidObject";
+import isFromNative from "./isFromNative";
+import deepAssign from "./deepAssign";
 
 export {
   shallowEqual,
@@ -11,7 +14,10 @@ export {
   getAssignedByKeys,
   getAssignedByExceptions,
   shallowEqualByKeys,
-  shallowEqualByExceptions
+  shallowEqualByExceptions,
+  isValidObject,
+  isFromNative,
+  deepAssign
 };
 
 export default {
@@ -20,5 +26,8 @@ export default {
   getAssignedByKeys,
   getAssignedByExceptions,
   shallowEqualByKeys,
-  shallowEqualByExceptions
+  shallowEqualByExceptions,
+  isValidObject,
+  isFromNative,
+  deepAssign
 };
