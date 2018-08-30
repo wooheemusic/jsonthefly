@@ -6,6 +6,8 @@ import arrayEqualWithoutOrder from "./arrayEqualWithoutOrder";
 import subtract from "./subtract";
 import merge from "./merge";
 import searchRows from "./searchRows";
+import select from "./select";
+import selectOne from "./selectOne";
 
 export {
   iterate,
@@ -15,7 +17,9 @@ export {
   arrayEqualWithoutOrder,
   merge,
   subtract,
-  searchRows
+  searchRows,
+  select,
+  selectOne
 };
 
 export default {
@@ -26,5 +30,7 @@ export default {
   arrayEqualWithoutOrder,
   merge,
   subtract,
-  searchRows
+  searchRows,
+  select,
+  selectOne
 };

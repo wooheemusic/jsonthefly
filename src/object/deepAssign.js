@@ -18,8 +18,8 @@ function deepAssign(
     const propertyName = keys[i];
     const property = addition[propertyName];
     if (isValidObject(property) && (!checkIfNative || !check(property))) {
-      const targetProperty = target[propertyName];
-      if (!isValidObject(targetProperty)) {
+      // const targetProperty = target[propertyName];
+      if (!isValidObject(target[propertyName])) {
         target[propertyName] = Array.isArray(property) ? [] : {};
       }
       deepAssign(target[propertyName], property);
