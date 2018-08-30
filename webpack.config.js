@@ -1,6 +1,6 @@
 module.exports = env => {
   var path = require("path");
-  var glob = require("../../../Library/Caches/typescript/2.9/node_modules/@types/glob");
+  var glob = require("glob");
 
   console.log("ZZZZZZZ", __dirname, path.resolve(__dirname, "dist"));
   // console.log(glob.sync('content/**/index.js'));
@@ -48,5 +48,6 @@ module.exports = env => {
     resolve: {
       modules: [path.resolve(__dirname, "src")]
     }
+    // mode: "development"
   };
 };
