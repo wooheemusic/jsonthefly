@@ -1,5 +1,1 @@
-import getPagenation from "./getPagenation";
-
-export { getPagenation };
-
-export default { getPagenation };
+export { default as getPagenation } from "./getPagenation";

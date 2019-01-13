@@ -1,7 +1,3 @@
-import upperFirst from "./upperFirst";
-import lowerFirst from "./lowerFirst";
-import isNumber from "./isNumber";
-
-export { upperFirst, lowerFirst, isNumber };
-
-export default { upperFirst, lowerFirst, isNumber };
+export { default as upperFirst } from "./upperFirst";
+export { default as lowerFirst } from "./lowerFirst";
+export { default as isNumber } from "./isNumber";

@@ -1,5 +1,1 @@
-import isValidElement from "./isValidElement";
-
-export { isValidElement };
-
-export default { isValidElement };
+export { default as isValidElement } from "./isValidElement";

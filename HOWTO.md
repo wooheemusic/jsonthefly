@@ -1,1 +1,1 @@
-git commit ~ -> npm version ~ -> npm run build -> cd dist -> npm publish -> git push \*
+git commit ~ -> npm version ~ -> npm run babel -> npm publish -> git push \*

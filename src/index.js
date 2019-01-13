@@ -1,9 +1,11 @@
-import array from "./array";
-import object from "./object";
-import string from "./array";
-import test from "./test";
-import react from "./react";
-
-export { array, object, string, test, react };
-
-export default { array, object, string, test, react };
+export * from "./array";
+export * from "./async";
+export * from "./math";
+export * from "./object";
+export * from "./page";
+export * from "./pattern";
+export * from "./react";
+export * from "./search";
+export * from "./string";
+export * from "./style";
+export * from "./test";
