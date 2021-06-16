@@ -1,38 +1,43 @@
-class Subject {
-  constructor(deafultState = {}) {
-    this.obs = [];
-    this.state = deafultState;
+export default class Subject {
+
+  constructor(initState = {}) {
+    this.obs = new Set();
+    this.state = initState;
   }
+
   register(ob) {
-    // it will be switched by flow
-    if (!(typeof ob === "object" && typeof ob.update === "function")) {
+    if (typeof ob !== "object" || typeof ob.update !== "function") {
       throw new Error(
-        "SingleSubject.register allows only an instance of Observer"
+        "Subject.prototype.register allows only an object with a function property of 'update'"
       );
     }
-    this.obs.push(ob);
+    this.obs.add(ob);
   }
+
   unregister(ob) {
-    const i = this.obs.indexOf(ob);
-    i > -1 && this.obs.splice(i, 1);
+    this.obs.delete(ob);
   }
+
   notify() {
-    const { obs } = this;
-    const l = obs.length;
-    for (let i = 0; i < l; i++) {
-      obs[i].update();
+    for (let ob of this.obs.values()) {
+      ob.update(this.state);
     }
   }
+
+  // I am considering a primitive version for the react functional approach.
   setState(v) {
-    if (!v) return;
-    // Boolean(v) === true triggers rendering
+    if (!v || this.state === v) return;
     if (typeof v === "object") {
       this.state = { ...this.state, ...v };
+      this.notify();
     } else if (typeof v === "function") {
       this.state = { ...this.state, ...v(this.state) };
+      this.notify();
     }
-    this.notify();
+  }
+
+  getState() {
+    return this.state;
   }
 }
 
-export default Subject;
