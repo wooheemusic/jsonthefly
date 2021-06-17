@@ -3,7 +3,7 @@ This repo has been started to practise *javascript on the fly*. However, I found
 
 ## Features
 
-### Subject and useReducer
+### Subject for the observer pattern
 You can extend `Subject` to use the observer pattern.
 ```js
 import Subject from 'jsonthefly/pattern/observer/Subject';
@@ -21,36 +21,10 @@ export default class Toggler extends Subject {
   }
 }
 ```
-Or you can use it as a singletone subject for react `useState` or `useReducer`.
-All components using `useSingletonReducer` will share and listen to a single source. 
+### Singleton useReducer
 ```jsx
-import { useState, useRef, useMemo } from 'react';
-import Subject from 'jsonthefly/pattern/observer/Subject';
-
-let subject;
-function getSubject(initialState) {
-  !subject && (subject = new Subject(initialState));
-  return subject;
-}
-
-export default function useSingletonReducer(reducer, initialState) {
-  const [state, setState] = useState(initialState);
-
-  const id = useRef();
-  useMemo(() => {
-    id.current = { update: setState };
-    getSubject(initialState).register(id.current);
-  }, [id]);
-
-  function dispatch(action) {
-    const nextState = reducer(state, action);
-    getSubject(initialState).setState(nextState);
-  }
-
-  return [state, dispatch];
-}
+... yet
 ```
-> This code will be provided as a module in a few days. :)
 
 ### Cancel promises
 `pseudoPromise` disables subsequent methods of Promise. You can hijack the promise sequences of exsting codes. It will be very helpful in debugging or edge cases.

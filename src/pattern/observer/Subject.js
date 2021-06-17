@@ -2,7 +2,7 @@ export default class Subject {
 
   constructor(initState = {}) {
     this.obs = new Set();
-    this.state = initState;
+    this.state = typeof initState === 'object' ? {...initState} : initState; // defensive against modifying initstate
   }
 
   register(ob) {
@@ -33,7 +33,7 @@ export default class Subject {
 
     if (typeof this.state === 'object') {
       if (typeof v === "object") {
-        this.state = { ...this.state, ...v }; // I have to check env-preset's behavior T_T for null decomposition
+        this.state = { ...this.state, ...v }; // null decomposition is ok for preset-env default
         this.notify();
       } else if (typeof v === 'boolean') { // forceUpdate for true, nothing for false
         v && this.notify();
