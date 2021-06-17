@@ -1,5 +1,5 @@
 # JSONTHEFLY
-This repo has been started to practise *javascript on the fly*. However, I found some codes are very intereting. Let me introduce some features.
+This repo has been started to practise *javascript on the fly*. However, I found some codes are very interesting. Let me introduce some features.
 
 ## Features
 
