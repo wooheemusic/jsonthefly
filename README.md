@@ -3,7 +3,7 @@ This repo has been started to practise *javascript on the fly*. However, I found
 
 ## Features
 
-### Subject for the observer pattern
+### `Subject` for the observer pattern
 You can extend `Subject` to use the observer pattern.
 ```js
 import Subject from 'jsonthefly/pattern/observer/Subject';
@@ -21,9 +21,58 @@ export default class Toggler extends Subject {
   }
 }
 ```
-### Singleton useReducer
+### Singleton `useReducer` for `react.js`
+1. Create a reducer.
 ```jsx
-... yet
+const initState = { cheeze: 10, dough: 'normal' };
+
+function _reduceCheeze(state, cheeze) {
+    if (state.cheeze === cheeze) {
+        return state;
+    };
+    return { ...state, cheeze };
+}
+
+function _reduceChangeDough(state, dough) {
+    if (state.dough === dough) {
+        return state;
+    };
+    return { ...state, dough };
+}
+
+function pizzaReducer(state, action) {
+    switch (action.type) {
+        case 'jumbo':
+            return _reduceChangeDough(_reduceCheeze(state, 30), 'heavy');
+        case 'thin':
+            return _reduceChangeDough(_reduceCheeze(state, 10), 'light');
+        default:
+            throw new Error('invalid action of reducePizza');
+    }
+}
+
+const actionTypes = ['jumbo', 'thin'];
+
+export { initState, actionTypes };
+
+export default [pizzaReducer, initState];
+```
+2. Create a module ref for usePizzaReducer.
+```jsx
+import createSingletonUseReducer from 'jsonthefly/react/createSingletonUseReducer';
+import reducePizza, { initState, actionTypes } from './reducePizza';
+
+export { initState, actionTypes };
+export default createSingletonUseReducer(...reducePizza);
+```
+3. Just use it in many components
+```jsx
+import usePizzaReducer from 'common/reducers/usePizzaReducer';
+
+export default function MyComponent(props) {
+    const [{dough, cheeze}, dispatchPizza] = usePizzaReducer();
+    ...
+}
 ```
 
 ### Cancel promises
