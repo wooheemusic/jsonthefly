@@ -24,14 +24,25 @@ export default class Subject {
     }
   }
 
-  // I am considering a primitive version for the react functional approach.
   setState(v) {
-    if (!v || this.state === v) return;
-    if (typeof v === "object") {
-      this.state = { ...this.state, ...v };
-      this.notify();
-    } else if (typeof v === "function") {
-      this.state = { ...this.state, ...v(this.state) };
+    // resolving function arg
+    typeof v === 'function' && (v = v(this.state));
+
+    // nothing changed
+    if (this.state === v) return; // not considering NaN and -0 
+
+    if (typeof this.state === 'object') {
+      if (typeof v === "object") {
+        this.state = { ...this.state, ...v }; // I have to check env-preset's behavior T_T for null decomposition
+        this.notify();
+      } else if (typeof v === 'boolean') { // forceUpdate for true, nothing for false
+        v && this.notify();
+      } else {
+        throw new Error('If the previous state is an object, a following state should be an object or a boolean');
+      }
+    } else {
+      // for primitive state
+      this.state = v;
       this.notify();
     }
   }
