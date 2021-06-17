@@ -1,7 +1,7 @@
-// no async
-// snd arg, catch will be updated
-export default function pseudoPromise(x) {
+export default function pseudoPromise() {
   return {
-    then: fn => pseudoPromise(fn(x))
+      then: pseudoPromise,
+      catch: pseudoPromise,
+      finally: pseudoPromise,
   };
 }
