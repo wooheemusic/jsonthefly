@@ -1,5 +1,6 @@
 const presets = [
-  "@babel/env"
+  "@babel/env",
+  "minify"
 ];
 
 module.exports = { presets };
