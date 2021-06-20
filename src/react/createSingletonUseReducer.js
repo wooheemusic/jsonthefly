@@ -15,8 +15,8 @@ export default function createSingletonUseReducer(reducer, initialState, bindAno
         }, [id]);
 
         useEffect(() => () => {
-            subject.unregister(id.current),
-        }, []) 
+            subject.unregister(id.current);
+        }, [])
 
         function dispatch(action) {
             const nextState = reducer(state, action);
