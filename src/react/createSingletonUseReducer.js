@@ -4,7 +4,7 @@ import Subject from '../pattern/observer/Subject';
 export default function createSingletonUseReducer(reducer, initialState, bindAnother) {
 
     let subject = new Subject(initialState);
-    typeof bindAnother === 'function' && bindAnother(subject.setState.bind(subject), subject.getState());
+    typeof bindAnother === 'function' && bindAnother(subject.setState.bind(subject));
 
     return function () {
         const [state, setState] = useState(initialState);
