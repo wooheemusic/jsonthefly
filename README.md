@@ -77,7 +77,7 @@ export default function MyComponent(props) {
 ```
 `usePizzaReducer` is safe from `MyComponent`'s unmount.
 
-4. You can make the singletoneUseReducer watch another resource.
+- You can make the singletoneUseReducer watch another resource.
 ```js
 export default createSingletonUseReducer(...reducePizza, setState => {
     // bind it to DOM
@@ -91,6 +91,11 @@ export default createSingletonUseReducer(...reducePizza, setState => {
 });
 ```
 The callback is executed at the very beginning.
+- I cannot come up with an idea that manages life cycles of createSingletonUseReducer. `create-react-app` uses `webpack` to bundle javascript modules, which compose a huge permanant ref tree. I can only detach an object in a module, but not a module. If I detached createSingletonUseReducer in some way, it would not have been imported like
+```js
+import usePizzaReducer from '../states/usePizzaReducer';
+```
+I prefer this way so far.
 
 ### Cancel promises
 `pseudoPromise` disables subsequent methods of Promise. You can hijack the promise sequences of exsting codes. It will be very helpful in debugging or edge cases.

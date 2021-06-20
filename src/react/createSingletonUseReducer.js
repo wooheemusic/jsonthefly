@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Subject from '../pattern/observer/Subject';
 
 export default function createSingletonUseReducer(reducer, initialState, bindAnother) {
