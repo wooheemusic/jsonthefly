@@ -1,8 +1,9 @@
 export default class Subject {
 
-  constructor(initState = {}) {
+  constructor(initState) {
     this.obs = new Set();
-    this.state = typeof initState === 'object' ? {...initState} : initState; // defensive against modifying initstate
+    // this.state = typeof initState === 'object' ? {...initState} : initState; // defensive against modifying initstate
+    this.state = initState; // shift defensiveness onto clients... like the react state rule. 
   }
 
   register(ob) {
