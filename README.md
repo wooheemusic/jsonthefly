@@ -78,7 +78,7 @@ export default function MyComponent(props) {
 `usePizzaReducer` is safe from `MyComponent`'s unmount.
 
 4. You can make the singletoneUseReducer watch another resource.
-```
+```js
 export default createSingletonUseReducer(...reducePizza, setState => {
     // bind it to DOM
     window.addEventListener('resize', e => {
