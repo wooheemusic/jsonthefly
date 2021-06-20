@@ -64,7 +64,6 @@ import reducePizza, { initState, actionTypes } from './reducePizza';
 
 export { initState, actionTypes };
 export default createSingletonUseReducer(...reducePizza);
-}));
 ```
 
 3. Just use it in many components
@@ -85,11 +84,11 @@ export default createSingletonUseReducer(...reducePizza, setState => {
     window.addEventListener('resize', e => {
         // ...
         setState(something);
-    })
+    });
     // or
     // ...
     anotherSubject.register({ update: setState });
-}));
+});
 ```
 The callback is executed at the very beginning.
 
