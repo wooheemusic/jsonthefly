@@ -4,19 +4,20 @@ import Subject from '../pattern/observer/Subject';
 export default function createSingletonUseReducer(reducer, initialState, bindAnother) {
 
     let subject = new Subject(initialState);
+    const getSubjectState = subject.getState.bind(subject)
     typeof bindAnother === 'function' && bindAnother(subject.setState.bind(subject));
 
     return function () {
-        const [state, setState] = useState(initialState);
+        const [state, setState] = useState(getSubjectState);
         const id = useRef();
-        useMemo(() => {
+
+        useEffect(() => {
             id.current = { update: setState };
             subject.register(id.current);
-        }, [id]);
-
-        useEffect(() => () => {
-            subject.unregister(id.current);
-        }, [])
+            return () => {
+                subject.unregister(id.current);
+            }
+        }, [id])
 
         function dispatch(action) {
             const nextState = reducer(state, action);
