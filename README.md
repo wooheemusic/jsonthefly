@@ -63,15 +63,9 @@ import createSingletonUseReducer from 'jsonthefly/react/createSingletonUseReduce
 import reducePizza, { initState, actionTypes } from './reducePizza';
 
 export { initState, actionTypes };
-export default createSingletonUseReducer(...reducePizza, setState => {
-    // you can make SingletonUseReducer watch another resource. for example
-    // this code is executed at the very beginning.
-    window.addEventListener('resize', e => {
-        setState(something);
-    })
+export default createSingletonUseReducer(...reducePizza);
 }));
 ```
-I made a big mistake their is a no
 
 3. Just use it in many components
 ```jsx
@@ -82,7 +76,22 @@ export default function MyComponent(props) {
     ...
 }
 ```
-`usePizzaReducer` is safe from `MyComponent`'s destruction.
+`usePizzaReducer` is safe from `MyComponent`'s unmount.
+
+4. You can make the singletoneUseReducer watch another resource.
+```
+export default createSingletonUseReducer(...reducePizza, setState => {
+    // bind it to DOM
+    window.addEventListener('resize', e => {
+        // ...
+        setState(something);
+    })
+    // or
+    // ...
+    anotherSubject.register({ update: setState });
+}));
+```
+The callback is executed at the very beginning.
 
 ### Cancel promises
 `pseudoPromise` disables subsequent methods of Promise. You can hijack the promise sequences of exsting codes. It will be very helpful in debugging or edge cases.
