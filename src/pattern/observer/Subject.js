@@ -15,7 +15,11 @@ export default class Subject {
   }
 
   unregister(ob) {
-    this.obs.delete(ob);
+    return this.obs.delete(ob);
+  }
+
+  clear() {
+    this.obs.clear()
   }
 
   notify() {
