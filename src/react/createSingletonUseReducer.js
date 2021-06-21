@@ -7,6 +7,10 @@ export default function createSingletonUseReducer(reducer, initialState, bindAno
     const getSubjectState = subject.getState.bind(subject)
     typeof bindAnother === 'function' && bindAnother(subject.setState.bind(subject));
 
+    function dispatch(action) {
+        subject.setState(s => reducer(s, action));
+    }
+
     return function () {
         const [state, setState] = useState(getSubjectState);
         const id = useRef();
@@ -18,11 +22,6 @@ export default function createSingletonUseReducer(reducer, initialState, bindAno
                 subject.unregister(id.current);
             }
         }, [id])
-
-        function dispatch(action) {
-            const nextState = reducer(state, action);
-            subject.setState(nextState);
-        }
 
         return [state, dispatch];
     }
