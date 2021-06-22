@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import Subject from '../pattern/observer/Subject';
 
-export default function createSingletonUseReducer(reducer, initialState, bindAnother) {
+export default function createSingletonUseReducer(reducer, initState, bindAnother) {
+  
+    const subject = initState instanceof Subject? initState : new Subject(initState);
 
-    let subject = new Subject(initialState);
     const getSubjectState = subject.getState.bind(subject)
-    typeof bindAnother === 'function' && bindAnother(subject.setState.bind(subject));
-
     function dispatch(action) {
         subject.setState(s => reducer(s, action));
     }
+    typeof bindAnother === 'function' && bindAnother(subject.setState.bind(subject));
 
     return function () {
         const [state, setState] = useState(getSubjectState);
