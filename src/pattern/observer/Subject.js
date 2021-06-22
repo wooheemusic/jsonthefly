@@ -34,14 +34,16 @@ export default class Subject {
     typeof v === 'function' && (v = v(this.state));
 
     // nothing changed
-    if (this.state === v) return; // not considering NaN and -0 
+    if (this.state === v) return false; // not considering NaN and -0 
 
     if (typeof this.state === 'object') {
-      if (typeof v === "object") {
+      if (typeof v === "object" && ((typeof Symbol === 'function') ? !(Symbol.iterator in v) : !Array.isArray(v))) { // exclude iterables, 
         this.state = { ...this.state, ...v }; // null decomposition is ok for preset-env default
         this.notify();
+        return true;
       } else if (typeof v === 'boolean') { // forceUpdate for true, nothing for false
         v && this.notify();
+        return v; // -,.-;
       } else {
         throw new Error('If the previous state is an object, a following state should be an object or a boolean');
       }
@@ -49,6 +51,7 @@ export default class Subject {
       // for primitive state
       this.state = v;
       this.notify();
+      return true;
     }
   }
 
