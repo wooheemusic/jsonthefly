@@ -91,6 +91,17 @@ export default createSingletonUseReducer(...reducePizza, setState => {
 });
 ```
 The callback is executed at the very beginning.
+- You can create singletoneUseReducer with a `Storage`
+```js
+import createSingletonUseReducer from 'jsonthefly/react/createSingletonUseReducer';
+import StorageSubject from 'jsonthefly/pattern/observer/StorageSubject'
+import colorReducer, { initState, actionTypes } from './reduceColor';
+
+export { initState, actionTypes };
+export default createSingletonUseReducer(colorReducer, new StorageSubject(localStorage, 'color', initState));
+```
+`StorageSubject` supports only number, string, boolean and plain object. Its `initState` and following states should be constant. The storage does not need to be a window built-in object. If it has `getItem` and `setItem`, it is ok. 
+
 - I cannot come up with an idea that manages life cycles of createSingletonUseReducer. `create-react-app` uses `webpack` to bundle javascript modules, which compose a huge permanant ref tree. I can only detach an object in a module, but not a module. If I detached createSingletonUseReducer in some way, it would not have been imported like
 ```js
 import usePizzaReducer from '../states/usePizzaReducer';
