@@ -24,6 +24,8 @@ export default class Toggler extends Subject {
 ### Singleton `useReducer` for `react.js`
 1. Create a reducer.
 ```jsx
+// reducers/pizzaReducer.js
+
 const initState = { cheeze: 10, dough: 'normal' };
 
 function _reduceCheeze(state, cheeze) {
@@ -55,20 +57,22 @@ const actionTypes = ['jumbo', 'thin'];
 
 export { initState, actionTypes };
 
-export default [pizzaReducer, initState];
+export default pizzaReducer;
 ```
 2. Create a module ref for usePizzaReducer.
 ```jsx
+// reducers/usePizzaReducer.js
+
 import createSingletonUseReducer from 'jsonthefly/react/createSingletonUseReducer';
-import reducePizza, { initState, actionTypes } from './reducePizza';
+import pizzaReducer, { initState, actionTypes } from './pizzaReducer';
 
 export { initState, actionTypes };
-export default createSingletonUseReducer(...reducePizza);
+export default createSingletonUseReducer(pizzaReducer, initState);
 ```
 
 3. Just use it in many components
 ```jsx
-import usePizzaReducer from 'common/reducers/usePizzaReducer';
+import usePizzaReducer from 'reducers/usePizzaReducer';
 
 export default function MyComponent(props) {
     const [{dough, cheeze}, dispatchPizza] = usePizzaReducer();
@@ -79,7 +83,7 @@ export default function MyComponent(props) {
 
 - You can make the singletoneUseReducer watch another resource.
 ```js
-export default createSingletonUseReducer(...reducePizza, setState => {
+export default createSingletonUseReducer(pizzaReducer, initState, setState => {
     // bind it to DOM
     window.addEventListener('resize', e => {
         // ...
@@ -100,7 +104,7 @@ import colorReducer, { initState, actionTypes } from './reduceColor';
 export { initState, actionTypes };
 export default createSingletonUseReducer(colorReducer, new StorageSubject(localStorage, 'color', initState));
 ```
-`StorageSubject` supports only number, string, boolean and plain object. Its `initState` and following states should be constant. The storage does not need to be a window built-in object. If it has `getItem` and `setItem`, it is ok. 
+`StorageSubject` supports only number, string, boolean and plain object. The type of `initState` and following states should be constant. The storage does not need to be a built-in object if you do not use `storage` events. If it has `getItem` and `setItem`, it is ok.  
 
 - I cannot come up with an idea that manages life cycles of createSingletonUseReducer. `create-react-app` uses `webpack` to bundle javascript modules, which compose a huge permanant ref tree. I can only detach an object in a module, but not a module. If I detached createSingletonUseReducer in some way, it would not have been imported like
 ```js
