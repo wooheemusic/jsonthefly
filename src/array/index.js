@@ -1,10 +1,36 @@
-export { default as iterate } from "./iterate";
-export { default as indexOf } from "./indexOf";
-export { default as numberOf } from "./numberOf";
-export { default as arrayEqual } from "./arrayEqual";
-export { default as arrayEqualWithoutOrder } from "./arrayEqualWithoutOrder";
-export { default as subtract } from "./subtract";
-export { default as merge } from "./merge";
-export { default as searchRows } from "./searchRows";
-export { default as select } from "./select";
-export { default as selectOne } from "./selectOne";
+import arrayEqual from "./arrayEqual";
+import arrayEqualWithoutOrder from "./arrayEqualWithoutOrder";
+import indexOf from "./indexOf";
+import iterate from "./iterate";
+import merge from "./merge";
+import numberOf from "./numberOf";
+import searchRows from "./searchRows";
+import select from "./select";
+import selectOne from "./selectOne";
+import subtract from "./subtract";
+
+export {
+    arrayEqual,
+    arrayEqualWithoutOrder,
+    indexOf,
+    iterate,
+    merge,
+    numberOf,
+    searchRows,
+    select,
+    selectOne,
+    subtract,
+}
+
+export default {
+    arrayEqual,
+    arrayEqualWithoutOrder,
+    indexOf,
+    iterate,
+    merge,
+    numberOf,
+    searchRows,
+    select,
+    selectOne,
+    subtract,
+}

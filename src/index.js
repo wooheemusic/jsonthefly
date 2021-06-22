@@ -1,11 +1,33 @@
-export * from "./array";
-export * from "./async";
-export * from "./math";
-export * from "./object";
-export * from "./page";
-export * from "./pattern";
-export * from "./react";
-export * from "./search";
-export * from "./string";
-export * from "./style";
-export * from "./test";
+import array from "./array";
+import async from "./async";
+import object from "./object";
+import page from "./page";
+import pattern from "./pattern";
+import react from "./react";
+import search from "./search";
+import string from "./string";
+import test from "./test";
+
+export { 
+    array, 
+    async,
+    object,
+    page,
+    pattern,
+    react,
+    search,
+    string,
+    test
+};
+
+export default { 
+    array, 
+    async,
+    object,
+    page,
+    pattern,
+    react,
+    search,
+    string,
+    test
+}

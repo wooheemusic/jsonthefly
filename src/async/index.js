@@ -1,1 +1,9 @@
-export { default as pseudoPromise } from "./pseudoPromise";
+import pseudoPromise from "./pseudoPromise";
+
+export { 
+    pseudoPromise,
+}
+
+export default { 
+    pseudoPromise,
+}

@@ -1,5 +1,21 @@
-export { default as parameterize } from "./parameterize";
-export { default as merge } from "./merge";
-export { default as subtract } from "./subtract";
-export { default as normalize } from "./normalize";
-export { default as paramEqual } from "./paramEqual";
+import merge from "./merge";
+import normalize from "./normalize";
+import paramEqual from "./paramEqual";
+import parameterize from "./parameterize";
+import subtract from "./subtract";
+
+export {
+    merge,
+    normalize,
+    paramEqual,
+    parameterize,
+    subtract,
+}
+
+export default {
+    merge,
+    normalize,
+    paramEqual,
+    parameterize,
+    subtract,
+}

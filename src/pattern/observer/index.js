@@ -1,2 +1,12 @@
-export { default as Subject } from "./Subject";
-export { default as StorageSubject } from './StorageSubject';
+import StorageSubject from './StorageSubject';
+import Subject from "./Subject";
+
+export { 
+    StorageSubject,
+    Subject,
+}
+
+export default { 
+    StorageSubject,
+    Subject,
+}

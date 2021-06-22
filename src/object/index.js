@@ -1,11 +1,33 @@
-export { default as shallowEqual } from "./shallowEqual";
-export { default as is } from "./is";
-export { default as getAssignedByKeys } from "./getAssignedByKeys";
-export { default as getAssignedByExceptions } from "./getAssignedByExceptions";
-export { default as shallowEqualByKeys } from "./shallowEqualByKeys";
+import deepAssign from "./deepAssign";
+import getAssignedByExceptions from "./getAssignedByExceptions";
+import getAssignedByKeys from "./getAssignedByKeys";
+import is from "./is";
+import isFromNative from "./isFromNative";
+import isValidObject from "./isValidObject";
+import shallowEqual from "./shallowEqual";
+import shallowEqualByExceptions from "./shallowEqualByExceptions";
+import shallowEqualByKeys from "./shallowEqualByKeys";
+
 export {
-  default as shallowEqualByExceptions
-} from "./shallowEqualByExceptions";
-export { default as isValidObject } from "./isValidObject";
-export { default as isFromNative } from "./isFromNative";
-export { default as deepAssign } from "./deepAssign";
+  deepAssign,
+  getAssignedByExceptions,
+  getAssignedByKeys,
+  is,
+  isFromNative,
+  isValidObject,
+  shallowEqual,
+  shallowEqualByExceptions,
+  shallowEqualByKeys,
+}
+
+export default {
+  deepAssign,
+  getAssignedByExceptions,
+  getAssignedByKeys,
+  is,
+  isFromNative,
+  isValidObject,
+  shallowEqual,
+  shallowEqualByExceptions,
+  shallowEqualByKeys,
+}

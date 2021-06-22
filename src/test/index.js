@@ -1,1 +1,9 @@
-export { default as store } from "./store";
+import store from "./store";
+
+export {
+    store,
+}
+
+export default {
+    store,
+}
