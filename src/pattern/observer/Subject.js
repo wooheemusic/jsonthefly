@@ -4,6 +4,7 @@ export default class Subject {
     this.obs = new Set();
     // this.state = typeof initState === 'object' ? {...initState} : initState; // defensive against modifying initstate
     this.state = initState; // shift defensiveness onto clients... like the react state rule. 
+    this.isHookStyle = isHookStyle;
   }
 
   register(ob) {
@@ -36,9 +37,9 @@ export default class Subject {
     // nothing changed
     if (this.state === v) return false; // not considering NaN and -0 
 
-    if (typeof this.state === 'object') {
+    if (!this.isHookStyle && typeof this.state === 'object') {
       if (typeof v === "object" && ((typeof Symbol === 'function') ? !(Symbol.iterator in v) : !Array.isArray(v))) { // exclude iterables, 
-        this.state = isHookStyle ? v : { ...this.state, ...v }; // null decomposition is ok for preset-env default
+        this.state = { ...this.state, ...v }; // null decomposition is ok for preset-env default
         this.notify();
         return true;
       } else if (typeof v === 'boolean') { // forceUpdate for true, nothing for false
@@ -48,7 +49,7 @@ export default class Subject {
         throw new Error('If the previous state is an object, a following state should be an object or a boolean');
       }
     } else {
-      // for primitive state
+      // for primitive state or hook style
       this.state = v;
       this.notify();
       return true;
