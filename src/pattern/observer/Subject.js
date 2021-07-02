@@ -2,11 +2,11 @@ const fundamentalConstructor = {}.constructor;
 
 export default class Subject {
 
-  constructor(initState, isHookStyle = true) {
+  constructor(initState, isMerging = false) {
     this.obs = new Set();
     // this.state = typeof initState === 'object' ? {...initState} : initState; // defensive against modifying initstate
     this.state = initState; // shift defensiveness onto clients... like the react state rule. 
-    this.isHookStyle = isHookStyle;
+    this.isMerging = isMerging;
   }
 
   register(ob) {
@@ -39,7 +39,7 @@ export default class Subject {
     // nothing changed
     if (this.state === v) return false; // not considering NaN and -0 
 
-    if (!this.isHookStyle && typeof this.state === 'object') {
+    if (!this.isMerging && typeof this.state === 'object') {
       if (typeof v === "object"
         && ((typeof Symbol === 'function') ? !(Symbol.iterator in v) : !Array.isArray(v)) // exclude iterables, 
         && v.constructor === fundamentalConstructor) { // allows only an fundamental object
