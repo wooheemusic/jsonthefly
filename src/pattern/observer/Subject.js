@@ -39,7 +39,7 @@ export default class Subject {
     // nothing changed
     if (this.state === v) return false; // not considering NaN and -0 
 
-    if (!this.isMerging && typeof this.state === 'object') {
+    if (this.isMerging && typeof this.state === 'object') {
       if (typeof v === "object"
         && ((typeof Symbol === 'function') ? !(Symbol.iterator in v) : !Array.isArray(v)) // exclude iterables, 
         && v.constructor === fundamentalConstructor) { // allows only an fundamental object
