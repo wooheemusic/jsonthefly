@@ -1,4 +1,6 @@
-const fundamentalConstructor = {}.constructor;
+function isMergeable(o) {
+  return typeof o === 'object' && (o === null || o.constructor === Object || o.prototype === void 0);
+}
 
 export default class Subject {
 
@@ -36,13 +38,11 @@ export default class Subject {
     // resolving function arg
     typeof v === 'function' && (v = v(this.state));
 
-    // nothing changed
+    // nothing changed 
     if (this.state === v) return false; // not considering NaN and -0 
 
-    if (this.isMerging && typeof this.state === 'object') {
-      if (typeof v === "object"
-        && ((typeof Symbol === 'function') ? !(Symbol.iterator in v) : !Array.isArray(v)) // exclude iterables, 
-        && v.constructor === fundamentalConstructor) { // allows only an fundamental object
+    if (this.isMerging && isMergeable(this.state)) {
+      if (isMergeable(v)) {
         this.state = { ...this.state, ...v }; // null decomposition is ok for preset-env default
         this.notify();
         return true;
@@ -50,7 +50,7 @@ export default class Subject {
         v && this.notify();
         return v; // -,.-;
       } else {
-        throw new Error('If the previous state is an object, a following state should be an object or a boolean');
+        throw new Error('If the previous state is an mergeable object, a following state should be an mergeable object or a boolean');
       }
     } else {
       // for primitive state or hook style
