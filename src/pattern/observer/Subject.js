@@ -1,3 +1,5 @@
+const fundamentalConstructor = {}.constructor;
+
 export default class Subject {
 
   constructor(initState, isHookStyle = true) {
@@ -38,7 +40,9 @@ export default class Subject {
     if (this.state === v) return false; // not considering NaN and -0 
 
     if (!this.isHookStyle && typeof this.state === 'object') {
-      if (typeof v === "object" && ((typeof Symbol === 'function') ? !(Symbol.iterator in v) : !Array.isArray(v))) { // exclude iterables, 
+      if (typeof v === "object"
+        && ((typeof Symbol === 'function') ? !(Symbol.iterator in v) : !Array.isArray(v)) // exclude iterables, 
+        && v.constructor === fundamentalConstructor) { // allows only an fundamental object
         this.state = { ...this.state, ...v }; // null decomposition is ok for preset-env default
         this.notify();
         return true;
