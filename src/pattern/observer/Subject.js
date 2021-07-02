@@ -41,6 +41,8 @@ export default class Subject {
     // nothing changed 
     if (this.state === v) return false; // not considering NaN and -0 
 
+    // isMerging === true means I will use Object.assign for states
+    // isMergeable checks whether you can safely merge states or not. Subject.js does not allow customised constructors in the merging mode.
     if (this.isMerging && isMergeable(this.state)) {
       if (isMergeable(v)) {
         this.state = { ...this.state, ...v }; // null decomposition is ok for preset-env default
@@ -53,7 +55,7 @@ export default class Subject {
         throw new Error('If the previous state is an mergeable object, a following state should be an mergeable object or a boolean');
       }
     } else {
-      // for primitive state or hook style
+      // for primitive state or hook style of react
       this.state = v;
       this.notify();
       return true;
