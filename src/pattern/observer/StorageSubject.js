@@ -11,7 +11,7 @@ function _parseItem(_stringified, _storageType) {
 // Support only plain objects and primitives of number, string, boolean.
 // The types of initState and following states should be contant. 
 export default class StorageSubject extends Subject {
-    constructor(storage, storageKey, initState) {
+    constructor(storage, storageKey, initState, isMerging) {
         if (!('getItem' in storage) || !('setItem' in storage)) {
             throw new Error('`storage` should be an instance of `Storage` or of that interface.')
         }
@@ -22,12 +22,12 @@ export default class StorageSubject extends Subject {
         const storageTypeKey = `typeof-${storageKey}`;
         const storageType = storage.getItem(storageTypeKey);
         if (storageType) { // old
-            super(_parseItem(storage.getItem(storageKey), storageType));
+            super(_parseItem(storage.getItem(storageKey), storageType), isMerging);
             this.type = storageType;
             this.key = storageKey;
             this.storage = storage;
         } else { // fresh
-            super(initState);
+            super(initState, isMerging);
             this.type = typeof this.state;
             this.key = storageKey; // duplicated because this._save uses these properties.
             this.storage = storage;
